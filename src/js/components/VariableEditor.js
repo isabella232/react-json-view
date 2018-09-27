@@ -7,6 +7,8 @@ import parseInput from './../helpers/parseInput';
 import stringifyVariable from './../helpers/stringifyVariable';
 import CopyToClipboard from './CopyToClipboard';
 
+import BN from 'bn.js';
+
 //data type components
 import {
     JsonBoolean,
@@ -194,6 +196,9 @@ class VariableEditor extends React.PureComponent {
             return this.getEditInput();
         case 'string':
             return <JsonString value={variable.value} {...props} />;
+        case 'uint':
+        case 'int':
+            return <JsonInteger value={new BN(variable.value).toString()} typeOverride={type} {...props} />;
         case 'integer':
             return <JsonInteger value={variable.value} {...props} />;
         case 'float':
