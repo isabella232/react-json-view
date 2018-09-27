@@ -241,25 +241,48 @@ class RjvObject extends React.PureComponent {
             keys = keys.sort();
         }
         keys.forEach(name => {
-            variable = new JsonVariable(name, variables[name]);
+            variable = variables[name];
+            if (typeof variable.name !== "undefined" &&
+                typeof variable.value !== "undefined" &&
+                typeof variable.type !== "undefined") {
+                variable = new JsonVariable(variable.name, variable.value, variable.type);
+            }
+            else {
+                variable = new JsonVariable(name, variables[name]);
+            }
 
             if (parent_type === 'array_group' && index_offset) {
                 variable.name = parseInt(variable.name) + index_offset;
             }
             if (!variables.hasOwnProperty(name)) {
                 return;
-            } else if (variable.type === 'object') {
-                elements.push(
-                    <JsonObject
-                        key={variable.name}
-                        depth={depth + DEPTH_INCREMENT}
-                        name={variable.name}
-                        src={variable.value}
-                        namespace={namespace.concat(variable.name)}
-                        parent_type={object_type}
-                        {...props}
-                    />
-                );
+            } else if (variable.type === 'object' || variable.type === 'struct' || variable.type === 'mapping') {
+                if ((variable.type === 'struct' || variable.type === 'mapping') && typeof variable.value.members !== 'undefined') {
+                    elements.push(
+                        <JsonObject
+                            key={variable.name}
+                            depth={depth + DEPTH_INCREMENT}
+                            name={variable.name}
+                            src={variable.value.members}
+                            namespace={namespace.concat(variable.name)}
+                            parent_type={variable.type}
+                            {...props}
+                        />
+                    );
+                }
+                else {
+                    elements.push(
+                        <JsonObject
+                            key={variable.name}
+                            depth={depth + DEPTH_INCREMENT}
+                            name={variable.name}
+                            src={variable.value}
+                            namespace={namespace.concat(variable.name)}
+                            parent_type={object_type}
+                            {...props}
+                        />
+                    );
+                }
             } else if (variable.type === 'array') {
                 let ObjectComponent = JsonObject;
 
@@ -301,10 +324,15 @@ class RjvObject extends React.PureComponent {
 
 //just store name, value and type with a variable
 class JsonVariable {
-    constructor(name, value) {
+    constructor(name, value, type) {
         this.name = name;
         this.value = value;
-        this.type = toType(value);
+        if (type) {
+            this.type = type;
+        }
+        else {
+            this.type = toType(value);
+        }
     }
 }
 
