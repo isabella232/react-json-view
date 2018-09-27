@@ -7,8 +7,8 @@ import Theme from './../../themes/getStyle';
 export default class extends React.PureComponent {
 
     render() {
-        const type_name = 'int';
         const {props} = this;
+        const type_name = props.typeOverride || 'int';
         return (
             <div {...Theme(props.theme, 'integer')}>
                 <DataTypeLabel type_name={type_name} {...props} />
