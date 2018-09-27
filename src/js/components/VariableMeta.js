@@ -14,6 +14,21 @@ import Theme from './../themes/getStyle';
 
 
 export default class extends React.PureComponent {
+    getObjectType = () => {
+        const {size, theme, displayDataTypes} = this.props;
+        if (displayDataTypes && (this.props.parent_type === "struct" || this.props.parent_type === "mapping")) {
+            return (
+                <span
+                    class="data-type-label"
+                    {...Theme(theme, 'data-type-label')}
+                    {...Theme(theme, this.props.parent_type)}
+                >
+                    {this.props.parent_type}
+                </span>
+            );
+        }
+    }
+
     getObjectSize = () => {
         const {size, theme, displayObjectSize} = this.props;
         if (displayObjectSize) {
@@ -118,6 +133,8 @@ export default class extends React.PureComponent {
                     e.stopPropagation();
                 }}
             >
+                {/* mapping/struct display */}
+                {this.getObjectType()}
                 {/* size badge display */}
                 {this.getObjectSize()}
                 {/* copy to clipboard icon */}
