@@ -24,6 +24,14 @@ const DEPTH_INCREMENT = 1;
 //single indent is 5px
 const SINGLE_INDENT = 5;
 
+const isSolidityType = (type) => {
+    const types = [
+        "struct",
+        "mapping"
+    ];
+    return types.indexOf(type) >= 0;
+}
+
 class RjvObject extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -256,8 +264,8 @@ class RjvObject extends React.PureComponent {
             }
             if (!variables.hasOwnProperty(name)) {
                 return;
-            } else if (variable.type === 'object' || variable.type === 'struct' || variable.type === 'mapping') {
-                if ((variable.type === 'struct' || variable.type === 'mapping') && typeof variable.value.members !== 'undefined') {
+            } else if (variable.type === 'object' || isSolidityType(variable.type)) {
+                if (isSolidityType(variable.type) && typeof variable.value.members !== 'undefined') {
                     elements.push(
                         <JsonObject
                             key={variable.name}

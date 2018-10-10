@@ -27,7 +27,9 @@ const colorMap = theme => ({
         regexp: theme.base0A,
         background: theme.base02,
         struct: theme.base0D,
-        mapping: theme.base0D
+        mapping: theme.base0D,
+        address: theme.base03,
+        enum: theme.base0D
     },
     editVariable: {
         editIcon: theme.base0E,
@@ -164,6 +166,10 @@ const getDefaultThemeStyling = theme => {
             display: 'inline-block',
             color: colors.dataTypes.boolean
         },
+        bool: {
+            display: 'inline-block',
+            color: colors.dataTypes.boolean
+        },
         date: {
             display: 'inline-block',
             color: colors.dataTypes.date
@@ -174,11 +180,21 @@ const getDefaultThemeStyling = theme => {
             marginRight: "4px",
             fontSize: "11px"
         },
-        struct: {
+        mapping: {
             display: 'inline-block',
             color: colors.dataTypes.mapping,
             marginRight: "4px",
             fontSize: "11px"
+        },
+        address: {
+            display: 'inline-block',
+            color: colors.dataTypes.address,
+            marginRight: "4px",
+            fontSize: "11px"
+        },
+        enum: {
+            display: 'inline-block',
+            color: colors.dataTypes.enum
         },
         'date-value': {
             marginLeft: constants.dateValueMarginLeft

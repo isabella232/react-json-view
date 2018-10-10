@@ -8,7 +8,7 @@ import Theme from './../../themes/getStyle';
 export default class extends React.PureComponent {
 
     render() {
-        const type_name = 'bool';
+        const type_name = this.props.typeOverride || 'bool';
         const {props} = this;
 
         return (

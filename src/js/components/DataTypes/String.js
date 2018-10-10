@@ -35,7 +35,7 @@ export default class extends React.PureComponent {
     }
 
     render() {
-        const type_name = 'string';
+        const type_name = this.props.typeOverride || 'string';
         const { collapsed } = this.state;
         const { props } = this;
         const { collapseStringsAfterLength, theme } = props;
@@ -56,7 +56,7 @@ export default class extends React.PureComponent {
         }
 
         return (
-            <div {...Theme(theme, 'string')}>
+            <div {...Theme(theme, type_name)}>
                 <DataTypeLabel type_name={type_name} {...props} />
                 <span
                     class="string-value"

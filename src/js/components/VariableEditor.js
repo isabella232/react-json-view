@@ -195,7 +195,8 @@ class VariableEditor extends React.PureComponent {
         case false:
             return this.getEditInput();
         case 'string':
-            return <JsonString value={variable.value} {...props} />;
+        case 'address':
+            return <JsonString value={variable.value} typeOverride={type} {...props} />;
         case 'uint':
         case 'int':
             return <JsonInteger value={new BN(variable.value).toString()} typeOverride={type} {...props} />;
@@ -204,7 +205,8 @@ class VariableEditor extends React.PureComponent {
         case 'float':
             return <JsonFloat value={variable.value} {...props} />;
         case 'boolean':
-            return <JsonBoolean value={variable.value} {...props} />;
+        case 'bool':
+            return <JsonBoolean value={variable.value} typeOverride={type} {...props} />;
         case 'function':
             return <JsonFunction value={variable.value} {...props} />;
         case 'null':
