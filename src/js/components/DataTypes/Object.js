@@ -250,7 +250,7 @@ class RjvObject extends React.PureComponent {
         }
         keys.forEach(name => {
             variable = variables[name];
-            if (typeof variable.name !== "undefined" &&
+            if (variable != null && typeof variable.name !== "undefined" &&
                 typeof variable.value !== "undefined" &&
                 typeof variable.type !== "undefined") {
                 variable = new JsonVariable(variable.name, variable.value, variable.type);
