@@ -1,5 +1,5 @@
 {
-    "name": "@seesemichaelj/react-json-view",
+    "name": "@ganache/react-json-view",
     "description": "Interactive react component for displaying javascript arrays and JSON objects.",
     "version": "1.20.1",
     "main": "dist/main.js",
@@ -71,7 +71,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/mac-s-g/react-json-view.git"
+        "url": "https://github.com/trufflesuite/react-json-view.git"
     },
     "keywords": [
         "array-viewer",
@@ -96,11 +96,11 @@
         "treeview"
     ],
     "license": "MIT",
-    "author": "Mac Gainor",
+    "author": "TruffleSuite",
     "bugs": {
-        "url": "https://github.com/mac-s-g/react-json-view/issues"
+        "url": "https://github.com/trufflesuite/react-json-view/issues"
     },
-    "homepage": "https://github.com/mac-s-g/react-json-view",
+    "homepage": "https://github.com/trufflesuite/react-json-view",
     "directories": {
         "docs": "docs",
         "test": "test"
